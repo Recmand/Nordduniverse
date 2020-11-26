@@ -1,34 +1,57 @@
-// server.js
-// where your node app starts
-
-// we've started you off with Express (https://expressjs.com/)
-// but feel free to use whatever libraries or frameworks you'd like through `package.json`.
+const Discord = require("discord.js");
+const client = new Discord.Client();
+//UPTIME ROBOT (WEB)
+const { get } = require("snekfetch");
+const http = require("http");
 const express = require("express");
 const app = express();
-
-// our default array of dreams
-const dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-];
-
-// make all the files in 'public' available
-// https://expressjs.com/en/starter/static-files.html
-app.use(express.static("public"));
-
-// https://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/views/index.html");
+  console.log("Pinging");
+  response.sendStatus(200);
+})
+app.listen(process.env.PORT);
+setInterval(() => {
+http.get('http://discord-tutori4l.glitch.me/');
+}, 280000);
+client.on("ready", async () => {
+  console.log(`${client.user.tag} sudah online!`);
+  client.user.setActivity("With Everyone");
 });
+client.on("message", async message => {
+  if (message.content === "indonesia") message.reply(":flag_id:");
+//COMMAND BOT DI SERVER.JS
+const prefix = "!"
+if(!message.content.startsWith(prefix)) return null;
+let msg = message.content.toLowerCase();
+let args = message.content.slice(prefix.length).trim().split(" ");
+let cmd = args.shift().toLowerCase();
+let command = cmd;
 
-// send the default array of dreams to the webpage
-app.get("/dreams", (request, response) => {
-  // express helps us take JS objects and send them as JSON
-  response.json(dreams);
-});
+let commandFiles;
+try{
+  commandFiles = require(`./commands/${cmd}.js`)
+} catch (err) {
+  return message.reply("Command Not Found")
+}
+const db = require("quick.db")
+const now = Date.now()
+if(db.has(`cd_${message.author.id}`)) {
+  const expirationTime = db.get(`cd_${message.author.id}`) + 3000
+  if(now < expirationTime) {
+  const timeLeft = (expirationTime - now) / 1000;
+		return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${cmd}\` command.`);
+  }
+}
+  db.set(`cd_${message.author.id}`, now);
+  setTimeout(() => {
+    db.delete(`cd_${message.author.id}`)
+  },3000)
+try {
+  commandFiles.run(client, message, args)
+} catch (err) {
+  } finally {
+    console.log(`${message.author.tag} menggunakan command ${prefix}${cmd}`)
+  }
 
-// listen for requests :)
-const listener = app.listen(process.env.PORT, () => {
-  console.log("Your app is listening on port " + listener.address().port);
 });
+client.login(process.env.TOKEN);
