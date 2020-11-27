@@ -1,52 +1,17 @@
-const { MessageEmbed } = require('discord.js')
-const { Menu } = require('discord.js-menu')
-exports.run = async (client, message) => {
-  let embed1 = new MessageEmbed()
-  .setTitle('Help Commands')
-  .setColor('BLUE')
-  .setThumbnail(client.user.displayAvatarURL({format: 'png', dynamic: true})+"?size=2048")
-  .setDescription('Ini adalah beberapa command yang tersedia') //ini cuma contoh
-  .addField('Core', '`ping` `stats` `help`', true)
-  
-  let embed2 = new MessageEmbed()
-  .setTitle('Help Commands')
-  .setColor('BLUE')
-  .setThumbnail(client.user.displayAvatarURL({format: 'png', dynamic: true})+"?size=2048")
-  .setDescription('Ini adalah beberapa command yang tersedia') //ini cuma contoh
-  .addField('Fun', '`8ball` `cat` `dog`', true)
-  
-  let embed3 = new MessageEmbed()
-  .setTitle('Help Commands')
-  .setColor('BLUE')
-  .setThumbnail(client.user.displayAvatarURL({format: 'png', dynamic: true})+"?size=2048")
-  .setDescription('Ini adalah beberapa command yang tersedia')
-  .addField('Music', '`play` `pause` `stop`', true)
-  
-  new Menu(message.channel, message.author.id, [
-            {
-                name: "main",
-                content:embed1,
-                reactions: {
-                    "⏹": "stop",
-                    "▶": "next"
-                }
-            },
-            {
-                name: "otherPage",
-                content: embed2,
-                reactions: {
-                    "⏹": "stop",
-                    "◀": "previous",
-                    "▶": "next"
-                }
-            },
-            {
-                name: "otherPageAgain",
-                content: embed3,
-                reactions: {
-                    "⏹": "stop",
-                    "◀": "previous"
-                }
-            }
-        ]);
+const discord = require("discord.js")
+module.exports = {
+  name: "help",
+  alias:["h","?","commandlist","cmd","cmdlist"],
+  description: "Show list of bot's commands",
+  run: async(client, msg, args) => {
+     const helpembed = new discord.MessageEmbed()
+     .setTitle(client.user.username + " Command List")
+     .setDescription(`Commands information`)
+     client.commands.map(cmd =>{
+       helpembed.addField(`${cmd.name} (${cmd.alias})`, cmd.description)
+     })
+     helpembed.setColor("YELLOW")
+     .setFooter("Nordd Universe 2020")
+     msg.channel.send(helpembed);
+  }
 }
