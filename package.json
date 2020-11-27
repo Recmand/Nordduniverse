@@ -14,7 +14,8 @@
     "discord.js": "^12.5.0",
     "http": "^0.0.0",
     "snekfetch": "^4.0.4",
-    "quick.db": "^7.1.2"
+    "quick.db": "^7.1.2",
+    "node-superfetch": "^0.1.10"
   },
   "engines": {
     "node": "12.x"
