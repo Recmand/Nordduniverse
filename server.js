@@ -29,6 +29,7 @@ client.on('ready', () => {
   client.user.setActivity("All of you!", {type:"WATCHING"})
 });
 
+
 const commandFile = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
 commandFile.forEach(file => {
   const command = require(`./commands/${file}`)
@@ -88,6 +89,7 @@ You can type ${prefix}help to get bot commands list`)
     console.log(`${msg.author.tag} using ${cmd} in ${msg.channel.name} | ${msg.guild.name}`)
   }
 }) 
+
 
 
 //insert token at .env first
