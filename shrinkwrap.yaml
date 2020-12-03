@@ -1,6 +1,8 @@
 dependencies:
+  aris: 1.0.9
   discord.js: 12.5.1
   discord.js-menu: 2.2.2
+  eris: 0.14.0
   express: 4.17.1
   http: 0.0.0
   node-superfetch: 0.1.10
@@ -63,6 +65,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-5hYdAkZlcG8tOLujVDTgCT+uPX0VnpAH28gWsLfzpXYm7wP6mp5Q/gYyR7YQ0cKVJcXJnl3j2kpBan13PtQf6w==
+  /aris/1.0.9:
+    dev: false
+    resolution:
+      integrity: sha512-IuAM65aYWMjeGLIOIJA9NLH9M/x54Fcz/qq5OBD0mxSGForcjdJLkfJguuUFym8BbeLVBFKQE7XsTzc6teCWfA==
   /array-flatten/1.1.1:
     dev: false
     resolution:
@@ -262,6 +268,17 @@ packages:
     dev: false
     resolution:
       integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
+  /eris/0.14.0:
+    dependencies:
+      ws: 7.4.0
+    dev: false
+    engines:
+      node: '>=8.0.0'
+    optionalDependencies:
+      opusscript: 0.0.7
+      tweetnacl: 1.0.3
+    resolution:
+      integrity: sha512-/W6X0SFR2swtA9oc4ga5Wh1TQcZtPgbUaDDdwYc67fvFUAtwC+V1xzWUZq2yDeJnTfB8Uot9SJWA8Lthe2sDtQ==
   /escape-html/1.0.3:
     dev: false
     resolution:
@@ -641,6 +658,11 @@ packages:
     dev: false
     resolution:
       integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
+  /opusscript/0.0.7:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-DcBadTdYTUuH9zQtepsLjQn4Ll6rs3dmeFvN+SD0ThPnxRBRm/WC1zXWPg+wgAJimB784gdZvUMA57gDP7FdVg==
   /parse-ms/2.1.0:
     dev: false
     engines:
@@ -1032,8 +1054,10 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  aris: ^1.0.8
   discord.js: ^12.5.0
   discord.js-menu: ^2.2.0
+  eris: ^0.14.0
   express: ^4.17.1
   http: ^0.0.0
   node-superfetch: ^0.1.10
